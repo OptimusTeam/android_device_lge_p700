@@ -89,7 +89,3 @@ TARGET_FORCE_CPU_UPLOAD	:= true
 
 #Try to force baseband display!
 TARGET_USES_JELLYBEAN_BASEBAND := true
-
-# Unified Device
-TARGET_UNIFIED_DEVICE := true
-TARGET_OTA_ASSERT_DEVICE := P700,p700,P705,p705,u0
