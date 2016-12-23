@@ -1,0 +1,12 @@
+#
+# system.prop for p700
+#
+
+debug.camcorder.disablemeta=1
+ro.sf.hwrotation=180
+ro.sf.lcd_density=200
+wifi.supplicant_scan_interval=180
+wifi.softap.interface=eth0
+ro.sys.fw.bg_apps_limit=7
+sys.mem.max_hidden_apps=7
+ro.config.low_ram=true
