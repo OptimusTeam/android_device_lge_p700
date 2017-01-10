@@ -8,7 +8,7 @@ LGE_PROJECT := l
 TARGET_BOOTLOADER_BOARD_NAME := p700
 TARGET_ARCH := arm
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=u0 lge.signed_image=false
+BOARD_KERNEL_CMDLINE := androidboot.hardware=u0 androidboot.selinux=permissive lge.signed_image=false
 
 TARGET_PREBUILT_KERNEL := device/lge/p700/kernel
 
@@ -17,9 +17,6 @@ TARGET_KERNEL_SOURCE := kernel/lge/msm7x27a-kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_u0_nonfc_defconfig
 
 TARGET_RECOVERY_FSTAB := device/lge/p700/fstab.u0
-
-## We need this for the flipped screen
-BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p700/recovery/graphics.c
 
 #bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p700/bluetooth
@@ -49,7 +46,21 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_VOLD_MAX_PARTITIONS := 23
 TARGET_USERIMAGES_USE_EXT4 := true
-SKIP_SET_METADATA := true
+
+# TWRP
+RECOVERY_VARIANT := #omni
+ifeq ($(RECOVERY_VARIANT),omni)
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_FLASH_FROM_STORAGE := true
+TW_NO_CPU_TEMP := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 225
+endif
+
 # Recovery
 DEVICE_RESOLUTION := 480x800
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
